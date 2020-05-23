@@ -144,11 +144,12 @@ def decode_base64(data):
 
     """
     data = data.replace('Bearer ','')
+    data = str.encode(data)
     # print('[debug] base64 string to decode:\n{0}'.format(data))
     missing_padding = len(data) % 4
     if missing_padding != 0:
         data += b'='* (4 - missing_padding)
-    return base64.decodestring(data)
+    return base64.decodebytes(data).decode()
 
 
 def get_error_explanation(context, error_code):
